@@ -1,7 +1,33 @@
-import 'package:example/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:go_router/go_router.dart';
+import 'package:internet_availability/internet_availability.dart';
+
+final GoRouter router = GoRouter(
+  routes: [
+    GoRoute(
+      path: '/',
+      builder: (context, state) => const Page1(),
+    ),
+    GoRoute(
+      path: NoInternetPage.routeName,
+      builder: (context, state) => const NoInternetPage(),
+    ),
+  ],
+  redirect: (context, state) {
+    switch (InternetAvailabilityConfig.showNoInternetPage()) {
+      case true:
+        InternetAvailabilityConfig.prevRoute = state.subloc;
+        return NoInternetPage.routeName;
+      case false:
+        return InternetAvailabilityConfig.prevRoute;
+      default:
+        return null;
+    }
+  },
+  refreshListenable: RefreshStream(
+      InternetAvailabilityConfig.internetAvailabilityCubit.stream),
+);
 
 void main() {
   usePathUrlStrategy();
@@ -11,7 +37,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
@@ -30,32 +55,9 @@ class Page1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
         body: Center(
-      child: InkWell(
-        onTap: () {
-          context.go(Page2.routeName);
-        },
-        child: const Text('Page 1'),
-      ),
-    ));
-  }
-}
-
-class Page2 extends StatelessWidget {
-  static const String routeName = '/page2';
-  const Page2({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: Center(
-      child: InkWell(
-        onTap: () {
-          context.go(Page1.routeName);
-        },
-        child: const Text('Page 2'),
-      ),
+      child: Text('Page 1'),
     ));
   }
 }

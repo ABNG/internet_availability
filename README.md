@@ -4,7 +4,8 @@ A Flutter package which check the internet availability and push a new page on t
 >*Note: The package will only work with [go_router](https://pub.dev/packages/go_router)*
 ## Features
 
-![Demo](https://user-images.githubusercontent.com/44497582/200654645-921f0848-b757-46c7-9e53-bf35e3d1b7e0.mp4)
+<video src="https://user-images.githubusercontent.com/44497582/200654645-921f0848-b757-46c7-9e53-bf35e3d1b7e0.mp4" controls="controls" style="max-height: 430px;">
+</video>
 
 # Getting started
 
@@ -17,7 +18,7 @@ flutter pub get
 
 # Usage
 
-* In your `GoRouter` routes list add one more route
+* In your `routes` list add one more route
 
 ```dart
 GoRoute(
@@ -30,8 +31,7 @@ The route should not be a nested route. You can provide any value to `path` prop
 
 ```dart
 redirect: (context, state) {
-    bool? showNoInternet = InternetAvailabilityConfig.showNoInternetPage();
-    switch (showNoInternet) {
+    switch (InternetAvailabilityConfig.showNoInternetPage()) {
       case true:
         InternetAvailabilityConfig.prevRoute = state.subloc;
         return NoInternetPage.routeName;
