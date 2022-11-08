@@ -1,7 +1,8 @@
 name: internet_availability
-description: A new Flutter package project.
+description: A package which check for internet and show a new page if internet is not available.
 version: 0.0.1
-homepage:
+maintainer: Abu Bakar
+homepage: https://github.com/ABNG/internet_availability
 
 environment:
   sdk: '>=2.18.2 <3.0.0'
