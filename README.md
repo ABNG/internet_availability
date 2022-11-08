@@ -3,7 +3,7 @@
 A Flutter package which check the internet availability and push a new page on top of the current route if internet is not available. Once the internet is available that page will automatically pop to previous route.
 >*Note: The package will only work with [go_router](https://pub.dev/packages/go_router)*
 ## Features
-![demo](assets/example.gif)
+[![example.gif](https://i.postimg.cc/1zsmPdnQ/example.gif)](https://postimg.cc/fVqnfBf2)
 
 # Getting started
 

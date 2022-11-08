@@ -1,3 +1,6 @@
+## 0.0.4
+
+* fixed gif
 ## 0.0.3
 
 * added gif
