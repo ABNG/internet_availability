@@ -1,5 +1,5 @@
 name: internet_availability
-description: A package which check for internet availability and push a new page on top of the current route if internet is not available.
+description: A flutter package which check for internet availability and push a new page on top of the current route if internet is not available.
 version: 0.0.1
 maintainer: Abu Bakar
 homepage: https://github.com/ABNG/internet_availability
@@ -14,15 +14,15 @@ dependencies:
   flutter_bloc: ^8.1.1
   connectivity_plus: ^3.0.2
   go_router: ^5.1.5
-  freezed_annotation: ^2.1.0
+  freezed_annotation: ^2.2.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
-  freezed: ^2.1.0+1
-  build_runner: ^2.3.0
-  json_serializable: ^6.5.1
+  freezed: ^2.2.1
+  build_runner: ^2.3.2
+  json_serializable: ^6.5.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
