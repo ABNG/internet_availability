@@ -1,3 +1,6 @@
+## 0.0.3
+
+* added gif
 ## 0.0.2
 
 * format the code
