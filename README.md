@@ -1,6 +1,6 @@
 # Internet Availability
 
-A Flutter package which check the internet availability and push a new page on top of the current route if internet is not available. Once the internet came back that page will automatically pop to previous route.
+A Flutter package which check the internet availability and push a new page on top of the current route if internet is not available. Once the internet is available that page will automatically pop to previous route.
 >*Note: The package will only work with [go_router](https://pub.dev/packages/go_router)*
 ## Features
 <center>
@@ -35,7 +35,7 @@ redirect: (context, state) {
     switch (InternetAvailabilityConfig.showNoInternetPage()) {
       case true:
         InternetAvailabilityConfig.prevRoute = state.subloc;
-        return NoInternetPage.routeName;
+        return NoInternetPage.routeName; //page route path
       case false:
         return InternetAvailabilityConfig.prevRoute;
       default:
@@ -52,3 +52,7 @@ refreshListenable: RefreshStream(
 refreshListenable: GoRouterRefreshStream(
       InternetAvailabilityConfig.internetAvailabilityCubit.stream),
 ```
+
+# Additional Information
+
+check the [example](https://pub.dev/packages/internet_availability/example) repository of the project for complete code.
