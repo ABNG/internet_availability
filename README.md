@@ -1,39 +1,53 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Internet Availability
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
+A Flutter package which check the internet availability and push a new page on top of the current route if internet is not available. Once the internet came back that page will automatically pop to previous route.
+>*Note: The package will only work with [go_router](https://pub.dev/packages/go_router)*
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+![Demo](https://user-images.githubusercontent.com/44497582/200654645-921f0848-b757-46c7-9e53-bf35e3d1b7e0.mp4)
 
-## Getting started
+# Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
+```bash
+flutter pub add internet_availability
+```
+```bash
+flutter pub get
 ```
 
-## Additional information
+# Usage
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+* In your `GoRouter` routes list add one more route
+
+```dart
+GoRoute(
+      path: NoInternetPage.routeName,
+      builder: (context, state) => const NoInternetPage(),
+    ),
+```
+The route should not be a nested route. You can provide any value to `path` property and even your own Widget to `builder` property.
+* add `redirect` and `refreshListenable` property of GoRouter and paste below code
+
+```dart
+redirect: (context, state) {
+    bool? showNoInternet = InternetAvailabilityConfig.showNoInternetPage();
+    switch (showNoInternet) {
+      case true:
+        InternetAvailabilityConfig.prevRoute = state.subloc;
+        return NoInternetPage.routeName;
+      case false:
+        return InternetAvailabilityConfig.prevRoute;
+      default:
+        return null;
+    }
+  },
+refreshListenable: RefreshStream(
+      InternetAvailabilityConfig.internetAvailabilityCubit.stream),
+```
+
+> Note: For `go_router` version lower than 5.0 use `GoRouterRefreshStream` and `redirect` will only take `state` as an argument.
+
+```dart
+refreshListenable: GoRouterRefreshStream(
+      InternetAvailabilityConfig.internetAvailabilityCubit.stream),
+```
