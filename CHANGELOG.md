@@ -1,3 +1,6 @@
+## 0.0.5
+
+* added enableBackGesture option in NoInternetPage
 ## 0.0.4
 
 * fixed gif

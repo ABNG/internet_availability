@@ -1,6 +1,6 @@
 name: internet_availability
 description: A flutter package which check for internet availability and push a new page on top of the current route if internet is not available.
-version: 0.0.4
+version: 0.0.5
 maintainer: Abu Bakar
 homepage: https://github.com/ABNG/internet_availability
 
